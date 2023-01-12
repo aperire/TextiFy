@@ -6,6 +6,8 @@ from PIL import Image, ImageTk
 from datetime import datetime
 import os
 from functions import *
+import logging
+
 
 def textify_windows():
     # Import Image Command
@@ -24,7 +26,8 @@ def textify_windows():
             path = listbox_file.get(listbox_file.curselection())
             string = img_to_txt(path)
             script.insert(END, string)
-        except:
+        except Exception as e:
+            print(e)
             msgbox.showerror("Unsupported Type", "File Type Not Supported!")
             for index in reversed(listbox_file.curselection()):
                 listbox_file.delete(index)
